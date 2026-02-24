@@ -41,6 +41,7 @@ export default function AvgFeedback({ data }: AvgFeedbackProps) {
   // ✅ Normalize numbers to 2 decimal places
   const normalizedData = data.map((row) => ({
     ...row,
+    subject: row.subject.split("(")[0].trim(), // Extract subject name without code
     averageFeedback: Number(row.averageFeedback.toFixed(2)),
     questionRatings: row.questionRatings?.map((q) => Number(q.toFixed(2))),
   }));
@@ -99,8 +100,8 @@ export default function AvgFeedback({ data }: AvgFeedbackProps) {
             Faculty Feedback in Percentage
           </CardTitle>
         </CardHeader>
-        <CardContent className="h-[400px]">
-          <ChartContainer config={chartConfig}>
+        <CardContent className="h-full w-full">
+          <ChartContainer config={chartConfig} className="w-full h-full">
             <BarChart
               data={normalizedData}
               margin={{ top: 20, left: 12, right: 12 }}

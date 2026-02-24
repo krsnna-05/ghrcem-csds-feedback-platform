@@ -57,22 +57,27 @@ const FormSummary = ({ id, type }: FormSummaryProps) => {
         const existingReport = reportData;
 
         const parsedReport: Record<string, number[]> = JSON.parse(
-          existingReport.report || "{}"
+          existingReport.report || "{}",
         );
         const totalSubmissions = existingReport.TotalSubmissions;
 
         const dynamicFacultyFeedback: FacultyFeedback[] = Object.keys(
-          parsedReport
+          parsedReport,
         ).map((facultyKey) => {
+          console.log("Processing facultyKey:", facultyKey);
+
           const ratings = parsedReport[facultyKey].map(
-            (val) => val / totalSubmissions
+            (val) => val / totalSubmissions,
           );
           const sum = ratings.reduce((acc, val) => acc + val, 0);
           const avg = sum / ratings.length;
           const [facultyName, subject] = facultyKey.split(" - ");
+
+          // Extract subject name without code
+
           return {
             facultyName,
-            subject,
+            subject, // Extract subject name without code
             questionRatings: ratings,
             averageFeedback: avg * 20,
             className: "Your Class Here",
@@ -246,7 +251,6 @@ const FormSummary = ({ id, type }: FormSummaryProps) => {
           </TableBody>
         </Table>
       </div>
-
       {facultyFeedback.length > 0 && (
         <div className="print-container mt-6">
           <AvgFeedback data={facultyFeedback} />

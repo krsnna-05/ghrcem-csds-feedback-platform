@@ -54,7 +54,7 @@ const TeacherWiseReport = ({
   return (
     <div className="teacher-report mt-10">
       {/* Teacher Info */}
-      <h2 className="text-xl font-bold text-center mb-4">
+      <h2 className="text-xl font-bold text-center my-10">
         {teacherName} – {subject}
       </h2>
 
@@ -130,8 +130,8 @@ const TeacherWiseReport = ({
               Question-wise Rating Chart
             </CardTitle>
           </CardHeader>
-          <CardContent className="h-[400px]">
-            <ChartContainer config={chartConfig}>
+          <CardContent className="h-full w-full">
+            <ChartContainer config={chartConfig} className="">
               <BarChart
                 data={feedbackData}
                 margin={{ top: 20, left: 12, right: 12 }}
