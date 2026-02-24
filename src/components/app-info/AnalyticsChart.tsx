@@ -48,8 +48,6 @@ const AnalyticsChart = ({ ChartData }: chartDatatype) => {
   // Dynamic width calculation
   const minWidth = Math.max(200, chartData.length * 120);
 
-  console.log("Chart Data (transformed):", chartData);
-
   return (
     <div className="w-full overflow-x-auto">
       <div style={{ minWidth: `${minWidth}px` }}>

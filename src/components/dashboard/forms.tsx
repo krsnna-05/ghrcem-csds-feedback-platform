@@ -19,6 +19,7 @@ type DefaultRow = {
   Branch: string;
   Faculties: Faculty[];
   $id: string;
+  createdAt: string;
 };
 
 const FormsList = () => {
@@ -51,7 +52,6 @@ const FormsList = () => {
   const fetchForms = useCallback(async () => {
     setLoading(true);
     try {
-      console.log("Fetching forms from database...");
       console.log("Using Database ID:", import.meta.env.VITE_DATABASE_ID);
 
       const res = await databases.listRows({
@@ -65,7 +65,13 @@ const FormsList = () => {
         Type: row.Type || "N/A",
         Branch: row.Branch || "N/A",
         Faculties: safeParseJSON(row.Faculties, []),
+        createdAt: row.$createdAt || "",
       }));
+
+      sanitized.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
 
       setForms(sanitized);
     } catch (err) {
@@ -161,6 +167,7 @@ const FormsList = () => {
                   name={form.Name}
                   branch={form.Branch}
                   type={form.Type}
+                  createdAt={form.createdAt}
                 />
               ))}
             </div>

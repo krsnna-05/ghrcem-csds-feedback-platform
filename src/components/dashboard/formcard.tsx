@@ -15,11 +15,34 @@ import {
 import { Link } from "react-router";
 import { Query } from "appwrite";
 
+const getRelativeTime = (date: Date) => {
+  const now = new Date();
+  const diffMs = date.getTime() - now.getTime();
+  const absDiffMs = Math.abs(diffMs);
+
+  const minute = 60 * 1000;
+  const hour = 60 * minute;
+  const day = 24 * hour;
+
+  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+
+  if (absDiffMs < hour) {
+    return rtf.format(Math.round(diffMs / minute), "minute");
+  }
+
+  if (absDiffMs < day) {
+    return rtf.format(Math.round(diffMs / hour), "hour");
+  }
+
+  return rtf.format(Math.round(diffMs / day), "day");
+};
+
 interface FormCardProps {
   id: string;
   branch?: string;
   type?: string;
   name?: string;
+  createdAt?: string;
 }
 
 const FormCard = ({
@@ -27,8 +50,24 @@ const FormCard = ({
   branch = "CSE-DS",
   type = "Theory",
   name = "Krishna Gavali",
+  createdAt = "",
 }: FormCardProps) => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+
+  const createdAtDate = createdAt ? new Date(createdAt) : null;
+  const isValidCreatedAt =
+    createdAtDate && !Number.isNaN(createdAtDate.getTime());
+
+  const formattedCreatedAt = isValidCreatedAt
+    ? new Intl.DateTimeFormat("en-IN", {
+        dateStyle: "medium",
+        timeStyle: "short",
+      }).format(createdAtDate)
+    : "Not available";
+
+  const relativeCreatedAt = isValidCreatedAt
+    ? getRelativeTime(createdAtDate)
+    : null;
 
   const handleDelete = async () => {
     const toastId = toast.loading("Deleting form...");
@@ -60,7 +99,7 @@ const FormCard = ({
             databaseId: import.meta.env.VITE_DATABASE_ID,
             tableId: "submissions",
             rowId: id,
-          })
+          }),
         );
       }
 
@@ -147,6 +186,18 @@ const FormCard = ({
               Submissions
             </Button>
           </Link>
+
+          <div className="rounded-md border border-border bg-muted/40 px-3 py-2">
+            <p className="text-xs text-muted-foreground">Created</p>
+            <p className="text-sm font-medium text-foreground">
+              {formattedCreatedAt}
+            </p>
+            {relativeCreatedAt ? (
+              <p className="text-xs text-muted-foreground">
+                {relativeCreatedAt}
+              </p>
+            ) : null}
+          </div>
         </CardContent>
       </Card>
     </>

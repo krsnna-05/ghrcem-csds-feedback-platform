@@ -47,8 +47,6 @@ const FormSummary = ({ id, type }: FormSummaryProps) => {
           queries: [Query.select(["report", "TotalSubmissions"])],
         });
 
-        console.log(JSON.parse(reportData.report), " From Forms Summary.tsx");
-
         if (reportData.TotalSubmissions === 0) {
           setNoEntry(true);
           return;
@@ -64,8 +62,6 @@ const FormSummary = ({ id, type }: FormSummaryProps) => {
         const dynamicFacultyFeedback: FacultyFeedback[] = Object.keys(
           parsedReport,
         ).map((facultyKey) => {
-          console.log("Processing facultyKey:", facultyKey);
-
           const ratings = parsedReport[facultyKey].map(
             (val) => val / totalSubmissions,
           );

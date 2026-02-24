@@ -28,8 +28,6 @@ export default function SubmissionTable({
 }: SubmissionTableProps) {
   const dataToShow = submissions;
 
-  console.log("Submissions data in SubmissionTable:", submissions);
-
   return (
     <div>
       {/* Header */}

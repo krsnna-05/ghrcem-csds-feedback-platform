@@ -7,7 +7,6 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { useSubmission } from "@/context/Submission";
 
 type TeacherCardProps = {
   name: string;
@@ -26,7 +25,6 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
 }) => {
   const [rating, setRating] = useState<number>(0);
   const [hovered, setHovered] = useState<number>(0);
-  const { submissions } = useSubmission();
 
   useEffect(() => {
     if (
@@ -38,10 +36,6 @@ const TeacherCard: React.FC<TeacherCardProps> = ({
       setRatingAtIndex(facultyIndex, rating);
     }
   }, [rating]);
-
-  useEffect(() => {
-    console.log("Current Submissions:", submissions);
-  }, [submissions]);
 
   return (
     <Card className="md:w-full">

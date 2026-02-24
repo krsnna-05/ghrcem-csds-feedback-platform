@@ -46,8 +46,6 @@ export default function AvgFeedback({ data }: AvgFeedbackProps) {
     questionRatings: row.questionRatings?.map((q) => Number(q.toFixed(2))),
   }));
 
-  console.log("AvgFeedback normalizedData:", normalizedData);
-
   return (
     <div className="flex flex-col lg:flex-row gap-6 w-full mt-6">
       {/* Table Section */}

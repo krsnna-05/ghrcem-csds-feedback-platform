@@ -119,8 +119,6 @@ export default function SubmissionsPage() {
         Branch: formData.Branch,
         Faculties: JSON.parse(formData.Faculties || "[]"),
       });
-
-      console.log("Form fetch result:", res);
     } catch (error) {
       console.log(error);
     } finally {
@@ -136,8 +134,6 @@ export default function SubmissionsPage() {
         rowId: formId!,
         queries: [Query.select(["Submissions"])],
       });
-
-      console.log("Submissions fetch result:", res);
 
       setSubmissions(JSON.parse(res.Submissions || "[]") || []);
     } catch (error) {

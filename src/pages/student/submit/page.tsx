@@ -46,8 +46,6 @@ const FormSubmit = () => {
         const parsed = JSON.parse(cached);
         const now = Date.now();
 
-        console.log("Using cached form data:", parsed);
-
         if (parsed.ts && now - parsed.ts < CACHE_TTL) {
           setFaculties(parsed.faculties || []);
           setValidFormId(formId);
@@ -96,10 +94,8 @@ const FormSubmit = () => {
           Type: row.Type,
           faculties,
           ts: Date.now(),
-        })
+        }),
       );
-
-      console.log("Fetched Form Data:", row);
 
       setName(row.Name || "");
       setBranch(row.Branch || "");

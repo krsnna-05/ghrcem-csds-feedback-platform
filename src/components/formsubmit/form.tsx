@@ -14,7 +14,7 @@ type QuestionSet = Record<string, string>;
 const FeedbackForm = () => {
   const { formType, showForm, faculties } = useFeedbackFormData();
   const [formQuestion, setFormQuestion] = useState<QuestionSet>({});
-  const { name, rollNo, div, setSubmissions, submissions } = useSubmission();
+  const { name, rollNo, div, setSubmissions } = useSubmission();
 
   useEffect(() => {
     if (formType === "Theory") {
@@ -34,10 +34,6 @@ const FeedbackForm = () => {
 
     setSubmissions(defaultSubmissions);
   }, []);
-
-  useEffect(() => {
-    console.log("Current Submissions:", submissions);
-  }, [submissions]);
 
   return (
     <div className="min-h-screen flex flex-col gap-4 justify-center items-center">

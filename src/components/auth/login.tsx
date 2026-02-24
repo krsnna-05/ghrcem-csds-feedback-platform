@@ -34,7 +34,6 @@ const LoginForm = () => {
     const userPromise = account.get();
     userPromise
       .then((user) => {
-        console.log("User is logged in", user);
         setAuth(user.$id, user.email, user.name, true);
 
         toast.success(`Welcome back, ${user.name}`);

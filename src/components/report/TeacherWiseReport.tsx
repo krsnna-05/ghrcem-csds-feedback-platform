@@ -45,10 +45,6 @@ const TeacherWiseReport = ({
     rating: parseFloat(ratings[idx].toFixed(2)) ?? 0,
   }));
 
-  console.log("Rendering TeacherWiseReport for", teacherName, subject, {
-    questions,
-  });
-
   // this is change
 
   return (
@@ -87,6 +83,7 @@ const TeacherWiseReport = ({
                       className="hover:bg-muted/40 transition-colors"
                     >
                       <td className="border border-border px-3 py-2">
+                        {idx + ". "}
                         {questions[idx]}
                       </td>
                       <td className="border border-border px-3 py-2 text-center">
