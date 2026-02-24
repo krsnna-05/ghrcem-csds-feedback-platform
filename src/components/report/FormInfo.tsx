@@ -7,7 +7,7 @@ type FormInfoProps = {
 const FormInfo = ({ Name, Type, Branch }: FormInfoProps) => {
   return (
     <div className=" flex justify-around border-b border-muted-foreground/50 mx-auto w-[98%]">
-      <img src="/logo.png" className="m-2  " />
+      <img src="/logo.png" className="m-2 aspect-auto w-40  " />
       <div className=" text-center flex flex-col items-center justify-center">
         <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-2">
           {Name}

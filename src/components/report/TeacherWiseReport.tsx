@@ -130,7 +130,7 @@ const TeacherWiseReport = ({
               Question-wise Rating Chart
             </CardTitle>
           </CardHeader>
-          <CardContent className="h-full w-full">
+          <CardContent className="h-full w-full px-0">
             <ChartContainer config={chartConfig} className="">
               <BarChart
                 data={feedbackData}
