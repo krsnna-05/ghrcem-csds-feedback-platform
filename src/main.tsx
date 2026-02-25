@@ -95,5 +95,5 @@ createRoot(document.getElementById("root")!).render(
       <Analytics />
       <ToasterComponent />
     </ThemeProvider>
-  </StrictMode>
+  </StrictMode>,
 );
