@@ -6,8 +6,7 @@ console.log("Project ID:", import.meta.env.VITE_APPWRITE_PROJECT_ID);
 
 const client = new Client()
   .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID)
-  .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
-  .setDevKey(import.meta.env.VITE_DEV_API_KEY);
+  .setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT);
 
 const account = new Account(client);
 
